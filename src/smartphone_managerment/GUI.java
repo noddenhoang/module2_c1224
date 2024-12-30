@@ -50,6 +50,7 @@ public class GUI extends Smartphone {
                 break;
             default:
                 System.out.println("Chức năng không tồn tại.");
+                guiMain();
         }
     }
 
