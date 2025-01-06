@@ -2,7 +2,7 @@ package smartphone_managerment;
 
 import java.util.Scanner;
 
-public class NewPhone extends Smartphone{
+public class NewPhone extends Smartphone implements Comparable<NewPhone> {
     private String id;
     private static String idNew = "DTM";
     private static int countNew = 0;
@@ -34,5 +34,10 @@ public class NewPhone extends Smartphone{
 
     public String getId() {
         return id;
+    }
+
+    @Override
+    public int compareTo(NewPhone other) {
+        return Double.compare(this.getPrice(), other.getPrice());
     }
 }

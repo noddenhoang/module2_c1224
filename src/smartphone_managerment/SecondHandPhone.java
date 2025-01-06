@@ -2,7 +2,7 @@ package smartphone_managerment;
 
 import java.util.Scanner;
 
-public class SecondHandPhone extends Smartphone {
+public class SecondHandPhone extends Smartphone implements Comparable<SecondHandPhone> {
     private String id;
     private static String idSecondHand = "DTC";
     private static int countSecondHand = 0;
@@ -43,5 +43,10 @@ public class SecondHandPhone extends Smartphone {
 
     public String getId() {
         return id;
+    }
+
+    @Override
+    public int compareTo(SecondHandPhone other) {
+        return Double.compare(this.getPrice(), other.getPrice());
     }
 }

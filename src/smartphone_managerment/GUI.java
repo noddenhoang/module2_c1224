@@ -2,6 +2,7 @@ package smartphone_managerment;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Collections;
 
 public class GUI extends Smartphone {
     static Scanner sc = new Scanner(System.in);
@@ -154,14 +155,42 @@ public class GUI extends Smartphone {
         choice = Integer.parseInt(sc.next());
         switch (choice) {
             case 1:
-                //Sắp xếp tăng dần
+                Collections.sort(newPhones);
+                Collections.sort(secondHandPhones);
+                System.out.println("Sắp xếp tăng dần thành công.");
+                outputAllPhone();
+                String choiceStr;
+                do {
+                    System.out.println("Bạn có muốn tiếp tục thao tác không?(Y/N)");
+                    choiceStr = sc.next();
+                    if (choiceStr.equalsIgnoreCase("Y")) {
+                        sortPhone();
+                    } else if (choiceStr.equalsIgnoreCase("N")) {
+                        System.out.println("Kết thúc chương trình.");
+                    } else {
+                        System.out.println("Chức năng không tồn tại.");
+                    }
+                } while (!choiceStr.equalsIgnoreCase("Y") && !choiceStr.equalsIgnoreCase("N"));
                 break;
             case 2:
-                //Sắp xếp giảm dần
+                Collections.sort(newPhones, Collections.reverseOrder());
+                Collections.sort(secondHandPhones, Collections.reverseOrder());
+                System.out.println("Sắp xếp giảm dần thành công.");
+                outputAllPhone();
+                do {
+                    System.out.println("Bạn có muốn tiếp tục thao tác không?(Y/N)");
+                    choiceStr = sc.next();
+                    if (choiceStr.equalsIgnoreCase("Y")) {
+                        sortPhone();
+                    } else if (choiceStr.equalsIgnoreCase("N")) {
+                        System.out.println("Kết thúc chương trình.");
+                    } else {
+                        System.out.println("Chức năng không tồn tại.");
+                    }
+                } while (!choiceStr.equalsIgnoreCase("Y") && !choiceStr.equalsIgnoreCase("N"));
                 break;
             case 3:
                 guiMain();
-                //Quay lại
                 break;
             default:
                 System.out.println("Chức năng không tồn tại.");
