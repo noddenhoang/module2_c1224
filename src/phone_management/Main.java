@@ -7,7 +7,7 @@ public class Main {
     static ArrayList<Phone> phoneList = new ArrayList<>();
 
     static {
-        phoneList.add(new OldPhone("Nokia 1202", "Nokia", 200000, 12, 50, "Điện thoại cơ bản"));
+        phoneList.add(new OldPhone("Nokia 1202", "Nokia", 200000, 12, 90, "Điện thoại cơ bản"));
         phoneList.add(new OldPhone("Samsung Galaxy S10", "Samsung", 20000000, 12, 100, "Điện thoại cao cấp"));
 
         phoneList.add(new NewPhone("iPhone 12", "Apple", 30000000, 12, 10));
@@ -60,8 +60,7 @@ public class Main {
                     System.out.print("Nhập phần trăm giảm giá: ");
                     double percentDiscount = Double.parseDouble(sc.next());
                     for (Phone phone : phoneList) {
-                        if (phone instanceof OldPhone) {
-                            OldPhone oldPhone = (OldPhone) phone;
+                        if (phone instanceof OldPhone oldPhone) {
                             oldPhone.applyDiscount(percentDiscount);
                         }
                     }
@@ -186,11 +185,9 @@ public class Main {
             boolean isExisted = false;
             for (Phone phone : phoneList) {
                 if (phone.getId().equals(id)) {
-                    if (phone instanceof OldPhone) {
-                        OldPhone oldPhone = (OldPhone) phone;
+                    if (phone instanceof OldPhone oldPhone) {
                         oldPhone.update(id);
-                    } else if (phone instanceof NewPhone) {
-                        NewPhone newPhone = (NewPhone) phone;
+                    } else if (phone instanceof NewPhone newPhone) {
                         newPhone.update(id);
                     }
                     isExisted = true;
@@ -267,7 +264,7 @@ public class Main {
     }
 
     public static void sortByPriceAscending() {
-        Collections.sort(phoneList, new Comparator<Phone>() {
+        phoneList.sort(new Comparator<Phone>() {
             @Override
             public int compare(Phone o1, Phone o2) {
                 return (int) (o1.getPrice() - o2.getPrice());
@@ -277,7 +274,7 @@ public class Main {
     }
 
     public static void sortByPriceDescending() {
-        Collections.sort(phoneList, new Comparator<Phone>() {
+        phoneList.sort(new Comparator<Phone>() {
             @Override
             public int compare(Phone o1, Phone o2) {
                 return (int) (o2.getPrice() - o1.getPrice());

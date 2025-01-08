@@ -1,6 +1,7 @@
 package phone_management;
 
 import java.util.*;
+import phone_management.validation.PhoneValidation;
 
 public abstract class Phone {
     private String id;
@@ -27,14 +28,10 @@ public abstract class Phone {
 
     public void input() {
         this.id = id;
-        System.out.print("Nhập tên điện thoại: ");
-        this.model = String.valueOf(sc.nextLine());
-        System.out.print("Nhập hãng điện thoại: ");
-        this.brand = String.valueOf(sc.nextLine());
-        System.out.print("Nhập giá điện thoại: ");
-        this.price = Double.parseDouble(sc.nextLine());
-        System.out.print("Nhập thời gian bảo hành: ");
-        this.guarantee = Integer.parseInt(sc.nextLine());
+        this.model = PhoneValidation.inputName("Tên điện thoại: ");
+        this.brand = PhoneValidation.inputBrand("Thương hiệu: ");
+        this.price = PhoneValidation.inputPrice("Giá: ");
+        this.guarantee = PhoneValidation.inputGuarantee("Thời gian bảo hành: ");
     }
 
     public void output() {

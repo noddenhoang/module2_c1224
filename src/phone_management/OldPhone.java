@@ -1,14 +1,16 @@
 package phone_management;
 
+import phone_management.validation.PhoneValidation;
+
 public class OldPhone extends Phone implements Discountable {
     private String id;
-    private double percentBattery;
+    private int percentBattery;
     private String description;
 
     public OldPhone() {
     }
 
-    public OldPhone(String model, String brand, double price, int guarantee, double percentBattery, String description) {
+    public OldPhone(String model, String brand, double price, int guarantee, int percentBattery, String description) {
         super(model, brand, price, guarantee);
         countOldPhone++;
         id = idOldPhone + String.format("%03d", countOldPhone);
@@ -23,24 +25,20 @@ public class OldPhone extends Phone implements Discountable {
         countOldPhone++;
         id = idOldPhone + String.format("%03d", countOldPhone);
         super.setId(id);
-        System.out.print("Nhập dung lượng pin còn lại (%): ");
-        this.percentBattery = Double.parseDouble(sc.nextLine());
-        System.out.print("Nhập mô tả: ");
-        this.description = String.valueOf(sc.nextLine());
+        this.percentBattery = PhoneValidation.inputBatteryCapacity("Dung lượng pin còn lại: ");
+        this.description = PhoneValidation.inputDescription("Mô tả: ");
     }
 
     public void update(String upID) {
         super.input();
         super.setId(upID);
-        System.out.print("Nhập dung lượng pin còn lại (%): ");
-        this.percentBattery = Double.parseDouble(sc.nextLine());
-        System.out.print("Nhập mô tả: ");
-        this.description = String.valueOf(sc.nextLine());
+        this.percentBattery = PhoneValidation.inputBatteryCapacity("Dung lượng pin còn lại: ");
+        this.description = PhoneValidation.inputDescription("Mô tả: ");
     }
 
     public void output() {
         super.output();
-        System.out.printf("Pin còn lại: %.0f%%\t|Mô tả: %s\n", percentBattery, description);
+        System.out.printf("|Pin còn lại: %d\t|Mô tả: %s\n", percentBattery, description);
     }
 
     public double calTotalPrice() {
@@ -51,7 +49,7 @@ public class OldPhone extends Phone implements Discountable {
         return percentBattery;
     }
 
-    public void setPercentBattery(double percentBattery) {
+    public void setPercentBattery(int percentBattery) {
         this.percentBattery = percentBattery;
     }
 

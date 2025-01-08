@@ -1,5 +1,7 @@
 package phone_management;
 
+import phone_management.validation.PhoneValidation;
+
 public class NewPhone extends Phone {
     private int quantity;
     private String id;
@@ -20,15 +22,13 @@ public class NewPhone extends Phone {
         countNewPhone++;
         id = idNewPhone + String.format("%03d", countNewPhone);
         super.setId(id);
-        System.out.print("Nhập số lượng: ");
-        this.quantity = Integer.parseInt(sc.nextLine());
+        this.quantity = PhoneValidation.inputQuantity("Số lượng: ");
     }
 
     public void update(String upID) {
         super.input();
         super.setId(upID);
-        System.out.print("Nhập số lượng: ");
-        this.quantity = Integer.parseInt(sc.nextLine());
+        this.quantity = PhoneValidation.inputQuantity("Số lượng: ");
     }
 
     public void output() {
