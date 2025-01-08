@@ -2,7 +2,7 @@ package phone_management;
 
 import java.util.*;
 
-public class Main extends Phone {
+public class Main {
     static Scanner sc = new Scanner(System.in);
     static ArrayList<Phone> phoneList = new ArrayList<>();
 
@@ -50,8 +50,22 @@ public class Main extends Phone {
                     menuSearchPhone();
                     break;
                 case 7:
-                    break;
+                    System.out.println("Tổng tiền điện thoại có trong cửa hàng: " + calTotalPriceInStore());
+                    System.out.print("Nhấn phím bất kỳ để tiếp tục: ");
+                    choiceStr = sc.next();
+                    if (!choiceStr.isEmpty()) {
+                        break;
+                    }
                 case 8:
+                    System.out.print("Nhập phần trăm giảm giá: ");
+                    double percentDiscount = Double.parseDouble(sc.next());
+                    for (Phone phone : phoneList) {
+                        if (phone instanceof OldPhone) {
+                            OldPhone oldPhone = (OldPhone) phone;
+                            oldPhone.applyDiscount(percentDiscount);
+                        }
+                    }
+                    System.out.println("Đã giảm giá cho điện thoại cũ thành công.");
                     break;
                 case 9:
                     System.out.println("Đã thoát chương trình.");
@@ -137,11 +151,9 @@ public class Main extends Phone {
             int choice = Integer.parseInt(sc.next());
             switch (choice) {
                 case 1:
-                    countOldPhone++;
                     addOldPhone();
                     break;
                 case 2:
-                    countNewPhone++;
                     addNewPhone();
                     break;
                 case 3:
@@ -574,5 +586,13 @@ public class Main extends Phone {
         if (!isExisted) {
             System.out.println("Không tìm thấy điện thoại mới nào.");
         }
+    }
+
+    public static double calTotalPriceInStore() {
+        double totalPrice = 0;
+        for (Phone phone : phoneList) {
+            totalPrice += phone.calTotalPrice();
+        }
+        return totalPrice;
     }
 }

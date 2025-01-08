@@ -1,6 +1,6 @@
 package phone_management;
 
-public class OldPhone extends Phone{
+public class OldPhone extends Phone implements Discountable {
     private String id;
     private double percentBattery;
     private String description;
@@ -20,6 +20,7 @@ public class OldPhone extends Phone{
 
     public void input() {
         super.input();
+        countOldPhone++;
         id = idOldPhone + String.format("%03d", countOldPhone);
         super.setId(id);
         System.out.print("Nhập dung lượng pin còn lại (%): ");
@@ -42,6 +43,10 @@ public class OldPhone extends Phone{
         System.out.printf("Pin còn lại: %.0f%%\t|Mô tả: %s\n", percentBattery, description);
     }
 
+    public double calTotalPrice() {
+        return getPrice();
+    }
+
     public double getPercentBattery() {
         return percentBattery;
     }
@@ -56,5 +61,11 @@ public class OldPhone extends Phone{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public void applyDiscount(double percentDiscount) {
+        double discountedPrice = getPrice() * (1 - percentDiscount / 100);
+        setPrice(discountedPrice);
     }
 }

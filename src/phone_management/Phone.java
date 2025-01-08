@@ -2,7 +2,7 @@ package phone_management;
 
 import java.util.*;
 
-public class Phone {
+public abstract class Phone {
     private String id;
     private String model;
     private String brand;
@@ -40,6 +40,8 @@ public class Phone {
     public void output() {
         System.out.printf("ID: %s\t|Model: %s\t|Thương hiệu: %s\t|Giá: %.0f VND\t|Bảo hành: %d tháng\t", id, model, brand, price, guarantee);
     }
+
+    public abstract double calTotalPrice();
 
     public String getId() {
         return id;

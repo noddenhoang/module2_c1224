@@ -17,6 +17,7 @@ public class NewPhone extends Phone {
 
     public void input() {
         super.input();
+        countNewPhone++;
         id = idNewPhone + String.format("%03d", countNewPhone);
         super.setId(id);
         System.out.print("Nhập số lượng: ");
@@ -33,6 +34,10 @@ public class NewPhone extends Phone {
     public void output() {
         super.output();
         System.out.printf("Số lượng: %d\n", quantity);
+    }
+
+    public double calTotalPrice() {
+        return quantity * getPrice();
     }
 
     public int getQuantity() {
