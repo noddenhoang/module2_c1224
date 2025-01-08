@@ -1,6 +1,6 @@
 package smartphone_managerment;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
